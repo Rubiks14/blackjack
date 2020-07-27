@@ -2,7 +2,9 @@ from card import Card, Suit
 
 
 class Hand(object):
-    def __init__(self, is_dealer=False):
+    MIN_BUST = 22
+
+    def __init__(self, is_dealer:bool=False):
         self.cards = []
         self.is_dealer = is_dealer
         self.revealed = not is_dealer
@@ -14,9 +16,9 @@ class Hand(object):
 
     def get_hand(self):
         if self.is_dealer and not self.revealed:
-            return '** ' + ' '.join([str(card) for card in self.cards[1:]])
+            return ['**', *(str(card) for card in self.cards[1:])]
         else:
-            return ' '.join([str(card) for card in self.cards])
+            return [str(card) for card in self.cards]
 
     @property
     def hand_value(self):
@@ -24,7 +26,7 @@ class Hand(object):
         total = sum(card_values)
         if self.is_dealer and not self.revealed:
             total -= card_values[0]
-        elif total > 21 and 11 in card_values:
+        elif total >= self.MIN_BUST and 11 in card_values:
             total -= 10
         return total
 

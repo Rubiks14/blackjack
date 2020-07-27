@@ -16,6 +16,10 @@ class Card(object):
     """
 
     def __init__(self, suit:str, rank:str):
+        if suit.value not in tuple(member.value for member in Suit.__members__.values()):
+            raise ValueError(f'{suit} is not a valid card suit')
+        if rank not in ('A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '3', '2'):
+            raise ValueError(f'{rank} is not a valid card rank')
         self.suit = suit
         self.rank = rank
     
@@ -34,5 +38,5 @@ class Card(object):
             return int(self.rank)
         elif self.rank == 'A':
             return 11
-        else:
+        elif self.rank in 'JQK':
             return 10
