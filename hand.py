@@ -13,12 +13,12 @@ class Hand(object):
         if not card:
             raise ValueError('dealt a blank card')
         self.cards.append(card)
-
+    
     def get_hand(self):
+        hand = [str(card) for card in self.cards]
         if self.is_dealer and not self.revealed:
-            return ['**', *(str(card) for card in self.cards[1:])]
-        else:
-            return [str(card) for card in self.cards]
+            hand = ['**', *hand[1:]]
+        return hand
 
     @property
     def hand_value(self):
@@ -29,6 +29,7 @@ class Hand(object):
         elif total >= self.MIN_BUST and 11 in card_values:
             total -= 10
         return total
+
 
 if __name__ == '__main__':
     h1 = Hand(True)
