@@ -1,11 +1,12 @@
-from card import Card, Suit
+from card import Card
 from random import shuffle
+
 
 class Deck(object):
     def __init__(self, num_decks=1):
         self.cards = [Card(suit, rank)
                         for i in range(num_decks)
-                        for suit in Suit.__members__.values()
+                        for suit in Card.VALID_SUITS
                         for rank in Card.VALID_RANKS]
 
     def shuffle(self):

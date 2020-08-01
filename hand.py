@@ -1,4 +1,4 @@
-from card import Card, Suit
+from card import Card
 
 
 class Hand(object):
@@ -33,9 +33,9 @@ class Hand(object):
 
 if __name__ == '__main__':
     h1 = Hand(True)
-    h1.add_card(Card(Suit.DIAMONDS, 'A'))
-    h1.add_card(Card(Suit.SPADES, '6'))
-    h1.add_card(Card(Suit.HEARTS, '4'))
+    h1.add_card(Card('\U00002666', 'A'))
+    h1.add_card(Card('\U00002660', '6'))
+    h1.add_card(Card('\U00002665', '4'))
     print(h1.get_hand())
     print(f"hand worth: {h1.hand_value}")
     print("Revealing dealer's last card")
